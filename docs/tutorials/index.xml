@@ -23,45 +23,58 @@
       <description>
         
         
-        &lt;h2 id=&#34;table-of-contents&#34;&gt;Table Of Contents&lt;/h2&gt;
+        
+
+&lt;h2 id=&#34;table-of-contents&#34;&gt;Table Of Contents&lt;/h2&gt;
+
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#preparing-the-release-image&#34;&gt;Preparing the Release Image&lt;/a&gt;
+
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#building-a-docker-image-with-fissile&#34;&gt;Building a Docker Image with Fissile&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#uploading-the-image&#34;&gt;Uploading The Image&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#modify-kubecf-to-use-the-new-image&#34;&gt;Modify Kubecf to Use the New Image&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#integrating-the-release-in-kubecf&#34;&gt;Integrating the Release in Kubecf&lt;/a&gt;
+
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#bpm&#34;&gt;BPM&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#operation-files&#34;&gt;Operation Files&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#testing-with-kubecf&#34;&gt;Testing With Kubecf&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;h2 id=&#34;preparing-the-release-image&#34;&gt;Preparing the Release Image&lt;/h2&gt;
+
 &lt;p&gt;BOSH release authors who want to test their development code with the
 Quarks operator need to build a Docker image from their release.
 This can be done with &lt;code&gt;fissile&lt;/code&gt;.  Afterwards, upload the image to a
 cluster for testing it, e.g. with Kubecf.&lt;/p&gt;
+
 &lt;h3 id=&#34;building-a-docker-image-with-fissile&#34;&gt;Building a Docker Image with Fissile&lt;/h3&gt;
-&lt;p&gt;Build the BOSH release first and convert it with &lt;a href=&#34;https://github.com/cloudfoundry-incubator/fissile&#34;&gt;fissile&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Build the BOSH release first and convert it with &lt;a href=&#34;https://github.com/cloudfoundry-incubator/fissile&#34; target=&#34;_blank&#34;&gt;fissile&lt;/a&gt;.&lt;/p&gt;
+
 &lt;p&gt;To generate a docker image from the BOSH release, you should use the
 following subcommand:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;fissile build release-image
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For more information on how to use the command, please refer to the
-related &lt;a href=&#34;https://github.com/cloudfoundry-incubator/fissile/blob/develop/docs/build-docker-imgs.md&#34;&gt;documentation&lt;/a&gt;. For a real example, see &lt;a href=&#34;https://github.com/cloudfoundry-incubator/cf-operator-ci/blob/e83e46548787ee740ea1918182604faaa5cddf8f/pipelines/release-images/tasks/build.sh#L34&#34;&gt;build.sh&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;fissile build release-image&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For more information on how to use the command, please refer to the
+related &lt;a href=&#34;https://github.com/cloudfoundry-incubator/fissile/blob/develop/docs/build-docker-imgs.md&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt;. For a real example, see &lt;a href=&#34;https://github.com/cloudfoundry-incubator/cf-operator-ci/blob/e83e46548787ee740ea1918182604faaa5cddf8f/pipelines/release-images/tasks/build.sh#L34&#34; target=&#34;_blank&#34;&gt;build.sh&lt;/a&gt;.&lt;/p&gt;
+
 &lt;h3 id=&#34;uploading-the-image&#34;&gt;Uploading The Image&lt;/h3&gt;
+
 &lt;p&gt;Depending on your cluster, you will need a way to get the locally
 built image into the Kubernetes registry.&lt;/p&gt;
-&lt;p&gt;With &lt;strong&gt;minikube&lt;/strong&gt; you can build directly on minikube&#39;s Docker. Switch
+
+&lt;p&gt;With &lt;strong&gt;minikube&lt;/strong&gt; you can build directly on minikube&amp;rsquo;s Docker. Switch
 to that docker daemon by running &lt;code&gt;eval $(minikube docker-env)&lt;/code&gt;, before
 you build the image with &lt;code&gt;fissile&lt;/code&gt;.&lt;/p&gt;
+
 &lt;p&gt;With &lt;strong&gt;kind&lt;/strong&gt;, you need to use &lt;code&gt;kind load docker-image&lt;/code&gt; after building
 the image, to make it available, i.e.:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;kind load docker-image docker.io/org/nats:0.1-dev
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;modify-kubecf-to-use-the-new-image&#34;&gt;Modify Kubecf to Use the New Image&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;kind load docker-image docker.io/org/nats:0.1-dev&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;modify-kubecf-to-use-the-new-image&#34;&gt;Modify Kubecf to Use the New Image&lt;/h3&gt;
+
 &lt;p&gt;Add an operations file to Kubernetes with the new image location. The
 example below uses NATS as the example for a BOSH release.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;kubectl&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;apply&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;-f&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&amp;lt;&amp;lt;EOF&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -79,23 +92,29 @@ example below uses NATS as the example for a BOSH release.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;url&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;docker.io/org/nats&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;version&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0.1&lt;/span&gt;-dev&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;sha1&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;~&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;EOF&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then, when running &lt;code&gt;helm install kubecf&lt;/code&gt;, refer to that image:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;helm install ... --set &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;operations.custom={nats-dev}&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: You can also unpack the helm release and modify it directly.
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;EOF&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, when running &lt;code&gt;helm install kubecf&lt;/code&gt;, refer to that image:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;helm install ... --set &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;operations.custom={nats-dev}&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: You can also unpack the helm release and modify it directly.
 There is no need to zip the release again, as &lt;code&gt;helm install scf/&lt;/code&gt; is
 able to install the unpacked release.&lt;/p&gt;
+
 &lt;p&gt;Note further that the above is an example of how to use the first kind
-of customization feature noted in the main &lt;a href=&#34;Contribute.md#customization&#34;&gt;README&lt;/a&gt;.&lt;/p&gt;
+of customization feature noted in the main &lt;a href=&#34;Contribute.md#customization&#34; target=&#34;_blank&#34;&gt;README&lt;/a&gt;.&lt;/p&gt;
+
 &lt;h2 id=&#34;integrating-the-release-in-kubecf&#34;&gt;Integrating the Release in Kubecf&lt;/h2&gt;
+
 &lt;p&gt;With Quarks and Kubecf, BOSH releases can largely be used just the
 same as with a BOSH director. There are a few things Quarks offers,
 however, to make the adaptation to the Kubernetes environment easier.&lt;/p&gt;
+
 &lt;h3 id=&#34;bpm&#34;&gt;BPM&lt;/h3&gt;
+
 &lt;p&gt;BPM configurations for jobs are parsed from a rendered &lt;code&gt;bpm.yml&lt;/code&gt;, as
 usual. But if need be, it is also possible to override the BPM
 configuration in the deployment manifest in the &lt;code&gt;quarks&lt;/code&gt; field. See
-&lt;a href=&#34;https://bosh.io/docs/bpm/config/&#34;&gt;the bpm documentation&lt;/a&gt; for details on how to configure BPM.&lt;/p&gt;
+&lt;a href=&#34;https://bosh.io/docs/bpm/config/&#34; target=&#34;_blank&#34;&gt;the bpm documentation&lt;/a&gt; for details on how to configure BPM.&lt;/p&gt;
+
 &lt;p&gt;Example:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;instance_groups&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;name&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;nats&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -112,16 +131,19 @@ configuration in the deployment manifest in the &lt;code&gt;quarks&lt;/code&gt; 
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;            &lt;/span&gt;executable&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;/var/vcap/packages/gnatsd/bin/gnatsd&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;            &lt;/span&gt;args&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;            &lt;/span&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;            &lt;/span&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/var/vcap/jobs/nats/config/nats.conf&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note: The next section on &lt;a href=&#34;#operation-files&#34;&gt;ops files&lt;/a&gt; explains how
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;            &lt;/span&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/var/vcap/jobs/nats/config/nats.conf&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note: The next section on &lt;a href=&#34;#operation-files&#34;&gt;ops files&lt;/a&gt; explains how
 this can be applied without the need to modify the original deployment
 manifest using ops files.&lt;/p&gt;
+
 &lt;h3 id=&#34;operation-files&#34;&gt;Operation Files&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://bosh.io/docs/cli-ops-files/&#34;&gt;ops files&lt;/a&gt; can be used to modify arbitrary parts of the deployment
+
+&lt;p&gt;&lt;a href=&#34;https://bosh.io/docs/cli-ops-files/&#34; target=&#34;_blank&#34;&gt;ops files&lt;/a&gt; can be used to modify arbitrary parts of the deployment
 manifest before it is applied. To do so, create a file in the
 directory &lt;code&gt;deploy/helm/scf/assets/operations/instance_groups&lt;/code&gt; and it
 will be automagically applied during installation, courtesy of the
 bazel machinery.&lt;/p&gt;
+
 &lt;p&gt;The ops file for the example above could look like this:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;type&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;replace&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;path&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;/instance_groups/name=nats/jobs/name=nats/properties/quarks&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;?&lt;/span&gt;/bpm/processes&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -132,12 +154,12 @@ bazel machinery.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;executable&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;/var/vcap/packages/gnatsd/bin/gnatsd&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;args&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/var/vcap/jobs/nats/config/nats.conf&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;testing-with-kubecf&#34;&gt;Testing With Kubecf&lt;/h2&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/var/vcap/jobs/nats/config/nats.conf&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;testing-with-kubecf&#34;&gt;Testing With Kubecf&lt;/h2&gt;
+
 &lt;p&gt;After upload and integration, it is possible to build and deploy Kubecf
 according to any of the recipes listed by the main
-&lt;a href=&#34;Contribute.md#deployment&#34;&gt;README&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;Contribute.md#deployment&#34; target=&#34;_blank&#34;&gt;README&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
