@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://mudler.github.io/kubecf-docs/"
 title = "KubeCF"
 
 enableRobotsTXT = true
