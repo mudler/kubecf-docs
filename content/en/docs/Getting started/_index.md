@@ -7,30 +7,26 @@ description: >
 ---
 
 {{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
+There is not an official release yet, [check out our nightlies](https://scf-v3.s3.amazonaws.com/index.html).
 {{% /pageinfo %}}
-
-Information in this section helps your user try your project themselves.
-
-* What do your users need to do to start using your project? This could include downloading/installation instructions, including any prerequisites or system requirements.
-
-* Introductory “Hello World” example, if appropriate. More complex tutorials should live in the Tutorials section.
-
-Consider using the headings below for your getting started page. You can delete any that are not applicable to your project.
 
 ## Prerequisites
 
-Are there any system requirements for using your project? What languages are supported (if any)? Do users need to already have any software or tools installed?
+- A Kubernetes cluster
+- Presence of a default storage class (provisioner).
+- For use with a diego-based kubecf (default), a node OS with XFS
+  support.
+      - For GKE, using the option `--image-type UBUNTU` with the
+        `gcloud beta container` command selects such an OS.
 
 ## Installation
 
-Where can your user find your project code? How can they install it (binaries, installable package, build from source)? Are there multiple options/versions they can install and how should they choose the right one for them?
+KubeCF is packaged as an Helm chart. 
 
-## Setup
+Currently there isn't any official release. 
 
-Is there any initial setup users need to do after installation to try your project?
+Nightly builds can be found on the [KubeCF public s3 bucket](https://scf-v3.s3.amazonaws.com/index.html).
 
 ## Try it out!
 
-Can your users test their installation, for example by running a commmand or deploying a Hello World example?
 
