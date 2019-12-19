@@ -195,7 +195,7 @@
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-getting-started-example-page" href="/kubecf-docs/docs/getting-started/example-page/">Example Page</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-getting-started-kubernetes-deploy" href="/kubecf-docs/docs/getting-started/kubernetes-deploy/">Deploy on Kubernetes</a>
       
       
     </li>
@@ -219,6 +219,12 @@
   <ul>
     <li class="collapse " id="kubecf-docs-docs-concepts">
       
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-concepts-operator" href="/kubecf-docs/docs/concepts/operator/">Operator</a>
       
       
     </li>
@@ -247,54 +253,25 @@
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tasks-beds" href="/kubecf-docs/docs/tasks/beds/">Bed and Chair Metrics</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tasks-secrets" href="/kubecf-docs/docs/tasks/secrets/">KubeCF and Secrets</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tasks-porridge" href="/kubecf-docs/docs/tasks/porridge/">Porridge Assessment</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tasks-deploy" href="/kubecf-docs/docs/tasks/deploy/">KubeCF Deployment guidelines</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tasks-task" href="/kubecf-docs/docs/tasks/task/">Another Task</a>
-      
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="/kubecf-docs/docs/tasks/ponycopters/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Working with Ponycopters</a>
-  </li>
-  <ul>
-    <li class="collapse " id="kubecf-docs-docs-tasks-ponycopters">
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tasks-upgrade" href="/kubecf-docs/docs/tasks/upgrade/">KubeCF Upgrades</a>
       
       
       
       
       
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tasks-ponycopters-configuring-ponycopters" href="/kubecf-docs/docs/tasks/ponycopters/configuring-ponycopters/">Configuring Ponycopters</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tasks-ponycopters-launching-ponycopters" href="/kubecf-docs/docs/tasks/ponycopters/launching-ponycopters/">Launching Ponycopters</a>
-      
-      
-    </li>
-  </ul>
-</ul>
-
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tasks-bosh" href="/kubecf-docs/docs/tasks/bosh/">Test BOSH Releases</a>
       
       
     </li>
@@ -326,6 +303,12 @@
       <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tutorials-bosh-integration" href="/kubecf-docs/docs/tutorials/bosh-integration/">Bosh releases integration</a>
       
       
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-tutorials-deploy-minikube" href="/kubecf-docs/docs/tutorials/deploy-minikube/">Deploy KubeCF in Minikube</a>
+      
+      
     </li>
   </ul>
 </ul>
@@ -351,8 +334,43 @@
       
       
       
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/kubecf-docs/docs/reference/layout/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Project Layout</a>
+  </li>
+  <ul>
+    <li class="collapse " id="kubecf-docs-docs-reference-layout">
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-parameter-reference" href="/kubecf-docs/docs/reference/parameter-reference/">Parameter Reference</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-layout-bump" href="/kubecf-docs/docs/reference/layout/bump/">CF Bump scripts</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-layout-cfcli" href="/kubecf-docs/docs/reference/layout/cfcli/">CF CLI script</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-layout-patches" href="/kubecf-docs/docs/reference/layout/patches/">Pre-render scripts</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
       
       
     </li>
@@ -454,15 +472,15 @@
 	<div class="lead">What&rsquo;s KubeCF?</div>
 	
 
-<p><strong>KubeCF</strong> is a Cloud Foundry distribution for Kubernetes. It uses the <a href="https://github.com/cloudfoundry-incubator/cf-operator/" target="_blank">Cloud Foundry Operator</a> to deploy and track <strong>CF Deployments</strong>, consuming directly also <strong>BOSH</strong> Releases, among Kubernetes Native components.</p>
+<p><strong>KubeCF</strong> is a Cloud Foundry distribution for Kubernetes.</p>
+
+<p>It uses the <a href="https://github.com/cloudfoundry-incubator/cf-operator/" target="_blank">Cloud Foundry Operator</a> to deploy and track <strong>CF Deployments</strong>, consuming directly also <strong>BOSH</strong> Releases, among Kubernetes Native components.</p>
 
 <h2 id="where-should-i-go-next">Where should I go next?</h2>
 
-<p>Give your users next steps from the Overview. For example:</p>
-
 <ul>
-<li><a href="/getting-started/">Getting Started</a>: Get started with $project</li>
-<li><a href="/examples/">Examples</a>: Check out some example code!</li>
+<li><a href="/docs/getting-started/">Getting Started</a>: Get started with KubeCF</li>
+<li><a href="/docs/tutorials/">Tutorials</a>: Check out some tutorials!</li>
 </ul>
 
         <div class="section-index">
@@ -506,12 +524,18 @@
         
             
         
+            
+        
+            
+        
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified December 19, 2019: <a  href="https://github.com/mudler/kubecf-docs/commit/625b842e9e0e0015c77b10989d6beb7851514b9e">Add more KubeCF references (625b842)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified December 19, 2019: <a  href="https://github.com/mudler/kubecf-docs/commit/ae742729c486ef79bf341b688213025cf9c102e4">Drop boilerplate content and add few extracts from real docs (ae74272)</a>
 </div>
 </div>
 

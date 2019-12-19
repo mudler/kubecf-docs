@@ -1,0 +1,134 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KubeCF – Project Layout</title>
+    <link>https://mudler.github.io/kubecf-docs/docs/reference/layout/</link>
+    <description>Recent content in Project Layout on KubeCF</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="https://mudler.github.io/kubecf-docs/docs/reference/layout/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: CF Bump scripts</title>
+      <link>https://mudler.github.io/kubecf-docs/docs/reference/layout/bump/</link>
+      <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mudler.github.io/kubecf-docs/docs/reference/layout/bump/</guid>
+      <description>
+        
+        
+        
+
+&lt;h1 id=&#34;bump&#34;&gt;Bump&lt;/h1&gt;
+
+&lt;p&gt;The scripts in directory &lt;strong&gt;dev/cf_deployment/bump&lt;/strong&gt; are used when bumping
+the version of the &lt;code&gt;cf-deployment&lt;/code&gt; manifest.&lt;/p&gt;
+
+&lt;h2 id=&#34;requirements&#34;&gt;Requirements&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://yq.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34;&gt;yq&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;scripts&#34;&gt;Scripts&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;set_release_urls.sh&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;To be run after updating the cf-deployment version to use and
+regenerating &lt;code&gt;assets/cf-deployment.yml&lt;/code&gt;, this script regenerates
+the &lt;code&gt;assets/operations/set_release_urls.yaml&lt;/code&gt; ops file which
+replaces BOSH release locations with references to the equivalent
+docker images.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: CF CLI script</title>
+      <link>https://mudler.github.io/kubecf-docs/docs/reference/layout/cfcli/</link>
+      <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mudler.github.io/kubecf-docs/docs/reference/layout/cfcli/</guid>
+      <description>
+        
+        
+        
+
+&lt;h1 id=&#34;cf-cli&#34;&gt;cf-cli&lt;/h1&gt;
+
+&lt;p&gt;The &lt;code&gt;cf_cli.sh&lt;/code&gt; script contained in directory &lt;strong&gt;dev/cf_cli&lt;/strong&gt; is a
+temporary helper script that creates a pod with the &lt;code&gt;cf-cli&lt;/code&gt;
+configured and ready to talk to the Kubecf in the cluster.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Pre-render scripts</title>
+      <link>https://mudler.github.io/kubecf-docs/docs/reference/layout/patches/</link>
+      <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://mudler.github.io/kubecf-docs/docs/reference/layout/patches/</guid>
+      <description>
+        
+        
+        
+
+&lt;p&gt;The directory &lt;strong&gt;bosh/releases/pre_render_scripts&lt;/strong&gt; contains scripts
+added to the &lt;code&gt;quarks&lt;/code&gt; property.&lt;/p&gt;
+
+&lt;p&gt;The structure of this directory is expected to be
+&lt;code&gt;&amp;lt;instance_group&amp;gt;/&amp;lt;job&amp;gt;/&amp;lt;type&amp;gt;/&amp;lt;script&amp;gt;&lt;/code&gt;, where &lt;code&gt;&amp;lt;type&amp;gt;&lt;/code&gt; is one of&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;jobs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bpm&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ig_resolver&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This type details the exact location of where the patch executes.&lt;/p&gt;
+
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/cloudfoundry-incubator/cf-operator/blob/master/docs/from_bosh_to_kube.md#Pre_render_scripts&#34; target=&#34;_blank&#34;&gt;Pre render scripts&lt;/a&gt; are kubecf&amp;rsquo;s equivalent of its predecessors&amp;rsquo; (SCF
+v2) &lt;a href=&#34;https://github.com/SUSE/scf/tree/develop/container-host-files/etc/scf/config/scripts/patches&#34; target=&#34;_blank&#34;&gt;patches&lt;/a&gt; scripts. They, like them, enable developers and
+maintainers to apply general patches to the sources of a job
+(e.g. configuration templates, script sources, etc.) before that job
+was rendered and then executed.&lt;/p&gt;
+
+&lt;p&gt;At the core, the feature allows the user to execute custom scripts
+during runtime of the job container for a specific instance_group.&lt;/p&gt;
+
+&lt;h2 id=&#34;machinery&#34;&gt;Machinery&lt;/h2&gt;
+
+&lt;p&gt;The parent and sibling directories (&lt;strong&gt;bosh/releases&lt;/strong&gt; and
+&lt;strong&gt;bosh/releases/generators&lt;/strong&gt;) contain supporting code (bazel
+machinery) which will automatically convert the script files into the
+proper ops files for use by the CF operator, as part of the overall
+generation of the kubecf helm chart.&lt;/p&gt;
+
+&lt;p&gt;It is this machinery which depends on the
+&lt;code&gt;&amp;lt;instance_group&amp;gt;/&amp;lt;job&amp;gt;/&amp;lt;type&amp;gt;/&amp;lt;script&amp;gt;&lt;/code&gt; structure noted above.&lt;/p&gt;
+
+&lt;h2 id=&#34;attention-dangers&#34;&gt;Attention, Dangers&lt;/h2&gt;
+
+&lt;p&gt;All patch scripts &lt;strong&gt;must be idempotent&lt;/strong&gt;. In other words, it must be
+possible to apply them multiple times without error and without
+changing the result.&lt;/p&gt;
+
+&lt;p&gt;The existing patch scripts do this by checking if the patch is already
+applied before attempting to apply it for real.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
