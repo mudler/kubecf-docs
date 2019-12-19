@@ -14,6 +14,166 @@
     
     
     <item>
+      <title>Docs: Tests</title>
+      <link>https://mudler.github.io/kubecf-docs/docs/reference/tests/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mudler.github.io/kubecf-docs/docs/reference/tests/</guid>
+      <description>
+        
+        
+        
+
+&lt;p&gt;The bazel target &lt;strong&gt;//testing/acceptance_tests&lt;/strong&gt; starts a run of the
+&lt;a href=&#34;https://github.com/SUSE/cf-acceptance-tests-release&#34; target=&#34;_blank&#34;&gt;Cloud Foundry Acceptance Tests&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;See also the &lt;a href=&#34;tests.md&#34; target=&#34;_blank&#34;&gt;entire set of available tests&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;limiting-test-suites&#34;&gt;Limiting test suites&lt;/h2&gt;
+
+&lt;p&gt;To limit the test groups to run, set the BOSH property
+&lt;a href=&#34;https://github.com/SUSE/cf-acceptance-tests-release/blob/0.0.1/jobs/acceptance-tests/spec#L47-L54&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;acceptance_tests.include&lt;/code&gt;&lt;/a&gt; as documented.  To do so, adjust the &lt;code&gt;properties&lt;/code&gt;
+key in &lt;a href=&#34;../../dev/kubecf/values.yaml&#34;&gt;&lt;code&gt;values.yaml&lt;/code&gt;&lt;/a&gt; to specify the groups desired.  For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;properties&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;acceptance-tests&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;acceptance-tests&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;acceptance_tests&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;include&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;+docker,-ssh&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that this is an example of how to use the second kind of
+customization feature noted in the main
+&lt;a href=&#34;Contribute.md#customization&#34; target=&#34;_blank&#34;&gt;README&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Image naming</title>
+      <link>https://mudler.github.io/kubecf-docs/docs/reference/image-naming/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mudler.github.io/kubecf-docs/docs/reference/image-naming/</guid>
+      <description>
+        
+        
+        &lt;p&gt;When running a kubecf instance, all of the job containers in the pods
+for the instance groups use a docker image. This image provides that job and
+the associated packages.&lt;/p&gt;
+
+&lt;p&gt;The names of these docker images are structured like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker.io/cfcontainerization/nats:opensuse-42.3-36.g03b4653-30.80-7.0.0_362.g9610e90b-26
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Registry                     Role Tag
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The tag is further structured as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;opensuse-42.3-36.g03b4653-30.80-7.0.0_362.g9610e90b-26
+~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~
+Stemcell OS   Stemcell version                      Role version
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The various components above come from a number of places in the
+Chart, chart values, deployment manifest, etc. When an element can be
+provided by multiple places, the first place (in the order given below)
+with a defined value (i.e. not nil) is used.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Element&lt;/th&gt;
+&lt;th&gt;Origin&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Role&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;instance_groups.[].name&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Registry&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;releases.(role).url&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;releases.defaults.url&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Role version&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;releases.(role).version&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;releases.defaults.version&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Stemcell OS&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;releases.(role).stemcell.os&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;releases.defaults.stemcell.os&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Stemcell version&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;releases.(role).stemcell.version&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;releases.defaults.stemcell.version&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Attention&lt;/strong&gt;: The stemcell information put into the Chart / manifest
+has to match the stemcell baked into the docker image by the CI image
+builder at the time of building.&lt;/p&gt;
+
+&lt;p&gt;This information is easiest to extract from the tag for the used
+docker image.&lt;/p&gt;
+
+&lt;p&gt;Some, but not all, of this information can also be extracted from the
+labels of the used docker image. For image &lt;strong&gt;foo&lt;/strong&gt;, invoke:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker inspect -f &#39;{{ index .Config.Labels &amp;quot;stemcell-version&amp;quot; }}&#39; foo
+docker inspect -f &#39;{{ index .Config.Labels &amp;quot;stemcell-flavor&amp;quot; }}&#39; foo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;strong&gt;flavor&lt;/strong&gt; plus the part of the &lt;strong&gt;version&lt;/strong&gt; up to the first dash
+character (&lt;code&gt;-&lt;/code&gt;) provides the stemcell OS, and the remainder of the
+version provides a prefix for the stemcell version.&lt;/p&gt;
+
+&lt;p&gt;For example, the version and flavor strings&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;42.3-36.g03b4653-30.80
+opensuse
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;yield &lt;strong&gt;opensuse-42.3&lt;/strong&gt; and &lt;strong&gt;36.g03b4653-30.80&lt;/strong&gt; for os and version
+prefix. Below, the tag structure again, with the labeling information
+added:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stemcell-flavor
+|        stemcell-version
+~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~
+opensuse-42.3-36.g03b4653-30.80-7.0.0_362.g9610e90b-26
+~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~
+Stemcell OS   Stemcell version                      Role version
+&lt;/code&gt;&lt;/pre&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Project Layout</title>
       <link>https://mudler.github.io/kubecf-docs/docs/reference/layout/</link>
       <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
@@ -22,11 +182,7 @@
       <description>
         
         
-        
-
-&lt;h2 id=&#34;source-organization&#34;&gt;Source Organization&lt;/h2&gt;
-
-&lt;p&gt;The important directories of the kubecf sources, and their contents
+        &lt;p&gt;The important directories of the KubeCF sources, and their contents
 are shown in the table below. Each directory entry links to the
 associated documentation, if we have any.&lt;/p&gt;
 
@@ -55,7 +211,7 @@ associated documentation, if we have any.&lt;/p&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;../bosh/releases/pre_render_scripts/README.md&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/bosh/releases&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://mudler.github.io/kubecf-docs/docs/reference/layout/patches/&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/bosh/releases&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Support for runtime patches of a kubecf deployment.&lt;/td&gt;
 &lt;/tr&gt;
 
@@ -65,7 +221,7 @@ associated documentation, if we have any.&lt;/p&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;cf_deployment/bump.md&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/cf_deployment/bump&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://mudler.github.io/kubecf-docs/docs/reference/layout/bump/&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/cf_deployment/bump&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Tools to support updating the cf deployment&lt;/td&gt;
 &lt;/tr&gt;
 
@@ -75,7 +231,7 @@ associated documentation, if we have any.&lt;/p&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;cf_cli.md&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/cf_cli&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://mudler.github.io/kubecf-docs/docs/reference/layout/cfcli/&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/cf_cli&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Deploy cf cli into a helper pod from which to then&lt;/td&gt;
 &lt;/tr&gt;
 
@@ -85,17 +241,17 @@ associated documentation, if we have any.&lt;/p&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;inspection.md&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/kube&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://mudler.github.io/kubecf-docs/docs/reference/layout/kube/&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/kube&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Tools to inspect kube clusters and kubecf deployments.&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;linters.md&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/linters&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://mudler.github.io/kubecf-docs/docs/reference/layout/linters/&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/linters&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Tools for statically checking the kubecf sources.&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;kube/minikube.md&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/minikube&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://mudler.github.io/kubecf-docs/docs/reference/layout/minikube/&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/minikube&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Targets to manage a local kubernetes cluster.&lt;/td&gt;
 &lt;/tr&gt;
 
@@ -105,7 +261,7 @@ associated documentation, if we have any.&lt;/p&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;kube/kind.md&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/kind&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://mudler.github.io/kubecf-docs/docs/reference/layout/kind/&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/kind&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Targets to manage a local kubernetes cluster.&lt;/td&gt;
 &lt;/tr&gt;
 
@@ -115,7 +271,7 @@ associated documentation, if we have any.&lt;/p&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;../dev/kubecf/README.md&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/kubecf&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://mudler.github.io/kubecf-docs/docs/reference/layout/kubecf/&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/dev/kubecf&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Kubecf chart configuration, and targets for&lt;/td&gt;
 &lt;/tr&gt;
 
@@ -140,7 +296,7 @@ associated documentation, if we have any.&lt;/p&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;tests.md&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/testing&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://mudler.github.io/kubecf-docs/docs/reference/layout/testing/&#34;&gt;&lt;strong&gt;top&lt;/strong&gt;/testing&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Bazel targets to run CF smoke and acceptance tests.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;

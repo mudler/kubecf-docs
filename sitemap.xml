@@ -4,7 +4,12 @@
   
   <url>
     <loc>https://mudler.github.io/kubecf-docs/docs/overview/</loc>
-    <lastmod>2019-12-19T15:14:30+01:00</lastmod>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mudler.github.io/kubecf-docs/docs/reference/tests/</loc>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
   </url>
   
   <url>
@@ -29,7 +34,12 @@
   
   <url>
     <loc>https://mudler.github.io/kubecf-docs/docs/concepts/operator/</loc>
-    <lastmod>2019-12-19T15:14:30+01:00</lastmod>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mudler.github.io/kubecf-docs/docs/concepts/quarks/</loc>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
   </url>
   
   <url>
@@ -63,13 +73,18 @@
   </url>
   
   <url>
+    <loc>https://mudler.github.io/kubecf-docs/docs/reference/image-naming/</loc>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mudler.github.io/kubecf-docs/docs/reference/</loc>
     <lastmod>2019-12-19T15:14:30+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://mudler.github.io/kubecf-docs/docs/contribution-guidelines/</loc>
-    <lastmod>2019-12-19T15:14:30+01:00</lastmod>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
   </url>
   
   <url>
@@ -99,17 +114,42 @@
   
   <url>
     <loc>https://mudler.github.io/kubecf-docs/docs/reference/layout/bump/</loc>
-    <lastmod>2019-12-19T15:14:30+01:00</lastmod>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://mudler.github.io/kubecf-docs/docs/reference/layout/cfcli/</loc>
-    <lastmod>2019-12-19T15:14:30+01:00</lastmod>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://mudler.github.io/kubecf-docs/docs/getting-started/kubernetes-deploy/</loc>
     <lastmod>2019-12-19T15:14:30+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mudler.github.io/kubecf-docs/docs/reference/layout/kube/</loc>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mudler.github.io/kubecf-docs/docs/reference/layout/kind/</loc>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mudler.github.io/kubecf-docs/docs/reference/layout/kubecf/</loc>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mudler.github.io/kubecf-docs/docs/reference/layout/linters/</loc>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mudler.github.io/kubecf-docs/docs/reference/layout/minikube/</loc>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
   </url>
   
   <url>
@@ -119,7 +159,12 @@
   
   <url>
     <loc>https://mudler.github.io/kubecf-docs/docs/reference/layout/</loc>
-    <lastmod>2019-12-19T15:14:30+01:00</lastmod>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mudler.github.io/kubecf-docs/docs/reference/layout/testing/</loc>
+    <lastmod>2019-12-19T16:03:09+01:00</lastmod>
   </url>
   
   <url>

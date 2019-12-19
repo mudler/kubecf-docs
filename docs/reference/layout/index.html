@@ -228,6 +228,12 @@
       <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-concepts-operator" href="/kubecf-docs/docs/concepts/operator/">Operator</a>
       
       
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-concepts-quarks" href="/kubecf-docs/docs/concepts/quarks/">Quarks</a>
+      
+      
     </li>
   </ul>
 </ul>
@@ -335,6 +341,18 @@
       
       
       
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-tests" href="/kubecf-docs/docs/reference/tests/">Tests</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-image-naming" href="/kubecf-docs/docs/reference/image-naming/">Image naming</a>
+      
+      
+      
+      
 
 
 
@@ -365,7 +383,43 @@
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-layout-kube" href="/kubecf-docs/docs/reference/layout/kube/">Inspection Helpers</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-layout-kind" href="/kubecf-docs/docs/reference/layout/kind/">Kind</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-layout-kubecf" href="/kubecf-docs/docs/reference/layout/kubecf/">KubeCF</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-layout-linters" href="/kubecf-docs/docs/reference/layout/linters/">Linters</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-layout-minikube" href="/kubecf-docs/docs/reference/layout/minikube/">Minikube</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-layout-patches" href="/kubecf-docs/docs/reference/layout/patches/">Pre-render scripts</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-kubecf-docs-docs-reference-layout-testing" href="/kubecf-docs/docs/reference/layout/testing/">Testing</a>
       
       
     </li>
@@ -439,8 +493,6 @@
 
 
 
-
-
           </div>
           <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
             <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
@@ -481,11 +533,7 @@
 <div class="td-content">
 	<h1>Project Layout</h1>
 	<div class="lead">What are the files in the KubeCF project?</div>
-	
-
-<h2 id="source-organization">Source Organization</h2>
-
-<p>The important directories of the kubecf sources, and their contents
+	<p>The important directories of the KubeCF sources, and their contents
 are shown in the table below. Each directory entry links to the
 associated documentation, if we have any.</p>
 
@@ -514,7 +562,7 @@ associated documentation, if we have any.</p>
 </tr>
 
 <tr>
-<td><a href="../bosh/releases/pre_render_scripts/README.md"><strong>top</strong>/bosh/releases</a></td>
+<td><a href="/docs/reference/layout/patches/"><strong>top</strong>/bosh/releases</a></td>
 <td>Support for runtime patches of a kubecf deployment.</td>
 </tr>
 
@@ -524,7 +572,7 @@ associated documentation, if we have any.</p>
 </tr>
 
 <tr>
-<td><a href="cf_deployment/bump.md" target="_blank"><strong>top</strong>/dev/cf_deployment/bump</a></td>
+<td><a href="/docs/reference/layout/bump/"><strong>top</strong>/dev/cf_deployment/bump</a></td>
 <td>Tools to support updating the cf deployment</td>
 </tr>
 
@@ -534,7 +582,7 @@ associated documentation, if we have any.</p>
 </tr>
 
 <tr>
-<td><a href="cf_cli.md" target="_blank"><strong>top</strong>/dev/cf_cli</a></td>
+<td><a href="/docs/reference/layout/cfcli/"><strong>top</strong>/dev/cf_cli</a></td>
 <td>Deploy cf cli into a helper pod from which to then</td>
 </tr>
 
@@ -544,17 +592,17 @@ associated documentation, if we have any.</p>
 </tr>
 
 <tr>
-<td><a href="inspection.md" target="_blank"><strong>top</strong>/dev/kube</a></td>
+<td><a href="/docs/reference/layout/kube/"><strong>top</strong>/dev/kube</a></td>
 <td>Tools to inspect kube clusters and kubecf deployments.</td>
 </tr>
 
 <tr>
-<td><a href="linters.md" target="_blank"><strong>top</strong>/dev/linters</a></td>
+<td><a href="/docs/reference/layout/linters/"><strong>top</strong>/dev/linters</a></td>
 <td>Tools for statically checking the kubecf sources.</td>
 </tr>
 
 <tr>
-<td><a href="kube/minikube.md" target="_blank"><strong>top</strong>/dev/minikube</a></td>
+<td><a href="/docs/reference/layout/minikube/"><strong>top</strong>/dev/minikube</a></td>
 <td>Targets to manage a local kubernetes cluster.</td>
 </tr>
 
@@ -564,7 +612,7 @@ associated documentation, if we have any.</p>
 </tr>
 
 <tr>
-<td><a href="kube/kind.md" target="_blank"><strong>top</strong>/dev/kind</a></td>
+<td><a href="/docs/reference/layout/kind/"><strong>top</strong>/dev/kind</a></td>
 <td>Targets to manage a local kubernetes cluster.</td>
 </tr>
 
@@ -574,7 +622,7 @@ associated documentation, if we have any.</p>
 </tr>
 
 <tr>
-<td><a href="../dev/kubecf/README.md"><strong>top</strong>/dev/kubecf</a></td>
+<td><a href="/docs/reference/layout/kubecf/"><strong>top</strong>/dev/kubecf</a></td>
 <td>Kubecf chart configuration, and targets for</td>
 </tr>
 
@@ -599,7 +647,7 @@ associated documentation, if we have any.</p>
 </tr>
 
 <tr>
-<td><a href="tests.md" target="_blank"><strong>top</strong>/testing</a></td>
+<td><a href="/docs/reference/layout/testing/"><strong>top</strong>/testing</a></td>
 <td>Bazel targets to run CF smoke and acceptance tests.</td>
 </tr>
 </tbody>
@@ -611,6 +659,12 @@ associated documentation, if we have any.</p>
     
     
     <hr class="panel-line">
+        
+            
+        
+            
+        
+            
         
             
         
@@ -665,6 +719,51 @@ associated documentation, if we have any.</p>
             
                 <div class="entry">
                     <h5>
+                        <a href="/kubecf-docs/docs/reference/layout/kube/">Inspection Helpers</a>
+                    </h5>
+                    <p>Helpers to inspect kube clusters and KubeCF deployments.</p>
+                </div>
+            
+        
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/kubecf-docs/docs/reference/layout/kind/">Kind</a>
+                    </h5>
+                    <p>Targets to manage a local Kind kubernetes cluster</p>
+                </div>
+            
+        
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/kubecf-docs/docs/reference/layout/kubecf/">KubeCF</a>
+                    </h5>
+                    <p>Kubecf chart configuration, and targets for local chart application.</p>
+                </div>
+            
+        
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/kubecf-docs/docs/reference/layout/linters/">Linters</a>
+                    </h5>
+                    <p>Tools for statically checking the kubecf sources</p>
+                </div>
+            
+        
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/kubecf-docs/docs/reference/layout/minikube/">Minikube</a>
+                    </h5>
+                    <p>Targets to manage a local Minikube kubernetes cluster</p>
+                </div>
+            
+        
+            
+                <div class="entry">
+                    <h5>
                         <a href="/kubecf-docs/docs/reference/layout/patches/">Pre-render scripts</a>
                     </h5>
                     <p>Support for runtime patches of a kubecf deployment.</p>
@@ -673,12 +772,21 @@ associated documentation, if we have any.</p>
         
             
         
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/kubecf-docs/docs/reference/layout/testing/">Testing</a>
+                    </h5>
+                    <p>Bazel targets to run CF smoke and acceptance tests.</p>
+                </div>
+            
+        
     
 </div>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified December 19, 2019: <a  href="https://github.com/mudler/kubecf-docs/commit/ae742729c486ef79bf341b688213025cf9c102e4">Drop boilerplate content and add few extracts from real docs (ae74272)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified December 19, 2019: <a  href="https://github.com/mudler/kubecf-docs/commit/961159ce7d2028eae8924b7170f5cefc82fb6f8d">Integrating remaining existing docs (961159c)</a>
 </div>
 </div>
 
