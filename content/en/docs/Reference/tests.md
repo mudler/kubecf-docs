@@ -11,7 +11,7 @@ The bazel target __//testing/acceptance_tests__ starts a run of the
 
 [Cloud Foundry Acceptance Tests]: https://github.com/SUSE/cf-acceptance-tests-release
 
-See also the [entire set of available tests](tests.md).
+See also the [entire set of available tests](/docs/reference/layout/testing/).
 
 ## Limiting test suites
 
@@ -28,8 +28,8 @@ properties:
 ```
 
 [`acceptance_tests.include`]:  https://github.com/SUSE/cf-acceptance-tests-release/blob/0.0.1/jobs/acceptance-tests/spec#L47-L54
-[`values.yaml`]: ../../dev/kubecf/values.yaml
+[`values.yaml`]: https://github.com/SUSE/kubecf/blob/master/deploy/helm/kubecf/values.yaml
 
 Note that this is an example of how to use the second kind of
 customization feature noted in the main
-[README](Contribute.md#customization).
+[README](/docs/contribution-guidelines/#customization).
