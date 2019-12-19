@@ -18,8 +18,11 @@ fi
 rm -rf "${publicpath}" || true
 [[ ! -d "${publicpath}" ]] && mkdir -p "${publicpath}"
 
-# Note: It needs 
+# Note: It needs
 # sudo npm install -g postcss-cli
-# npm install autoprefixer
+#
 
-"${binpath}/hugo" -b "${BASE_URL}" -d "${publicpath}"
+npm install -D --save autoprefixer
+npm install -D --save postcss-cli
+
+HUGO_ENV="production" "${binpath}/hugo" --gc -b "${BASE_URL}" -d "${publicpath}"

@@ -1,4 +1,4 @@
-export HUGO_VERSION?=0.61.0
+export HUGO_VERSION?=0.57.2
 export HUGO_PLATFORM?=Linux-64bit
 
 export ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
@@ -12,3 +12,7 @@ build:
 .PHONY: serve
 serve:
 	scripts/serve.sh
+
+.PHONY: publish
+publish:
+	scripts/publish.sh
