@@ -6,8 +6,6 @@ description: >
   Tools to support updating the cf deployment manifest used by KubeCF
 ---
 
-# Bump
-
 The scripts in directory __dev/cf_deployment/bump__ are used when bumping
 the version of the `cf-deployment` manifest.
 

@@ -23,7 +23,7 @@ which go deeper into the details of each aspect.
   - [Docker Images](#docker-images)
   - [Linting](#linting)
   - [Patching](#patching)
-  - [BOSH Development Workflow]
+  - [BOSH Development Workflow](/docs/tutorials/bosh-integration/)
 
 ## Deployment
 
@@ -81,7 +81,7 @@ The docker images used by kubecf to run jobs in container use a
 moderately complex naming scheme.
 
 This scheme is explained in a separate document:
-[The Naming Of Docker Images in kubecf](dev/image-naming.md).
+[The Naming Of Docker Images in kubecf](/docs/reference/image-naming/).
 
 ## Linting
 
@@ -185,9 +185,7 @@ operations:
   in the values.yaml (or an equivalent `--set` option) as part of a
   kubecf deployment to include that ops file in the deployment.
 
-  The [BOSH Development Workflow] is an example of its use.
-
-[BOSH Development Workflow]: bosh-release-development.md
+  The [BOSH Development Workflow](/docs/tutorials/bosh-integration/) is an example of its use.
 
   2. The second mechanism allows the specification of any custom BOSH
      property for any instancegroup and job therein.
@@ -207,7 +205,7 @@ properties:
   and job during deployment.
 
   An example of its use in Kubecf is limiting the set of test
-  suites executed by the [CF acceptance tests](tests_cat.md).
+  suites executed by the [CF acceptance tests](/docs/reference/tests).
 
 Both forms of customization assume a great deal of familiarity on the
 part of the developer and/or operator with the BOSH releases, instance
@@ -224,7 +222,7 @@ job was rendered and then executed. At the core, the feature allows
 the user to execute custom scripts during runtime of the job container
 for a specific instance_group.
 
-[Pre render scripts] are the equivalent feature of the CF operator.
+[Pre render scripts](/docs/reference/layout/patches/) are the equivalent feature of the CF operator.
 
 [patches]: https://github.com/SUSE/scf/tree/develop/container-host-files/etc/scf/config/scripts/patches
 [Pre render scripts]: https://github.com/cloudfoundry-incubator/cf-operator/blob/master/docs/from_bosh_to_kube.md#Pre_render_scripts
@@ -234,7 +232,7 @@ deployment. The relevant patch scripts are found under the directory
 `bosh/releases/pre_render_scripts`.
 
 When following the directory structure explained by the
-[README](pre-render-scripts.md), the bazel machinery for generating
+[README](/docs/reference/layout/patches/), the bazel machinery for generating
 the kubecf helm chart will automatically convert these scripts into
 the proper ops files for use by the CF operator.
 

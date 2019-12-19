@@ -9,8 +9,7 @@ description: >
 
 **KubeCF** is a Cloud Foundry distribution for Kubernetes.
 
-It uses the [Cloud Foundry Operator](https://github.com/cloudfoundry-incubator/cf-operator/) to deploy and track **CF Deployments**, consuming directly also **BOSH** Releases, among Kubernetes Native components.
-
+It uses the [Cloud Foundry Operator](/docs/concepts/operator/) to deploy and track **CF Deployments**, consuming directly also **BOSH** Releases, among Kubernetes Native components.
 
 ## Where should I go next?
 
