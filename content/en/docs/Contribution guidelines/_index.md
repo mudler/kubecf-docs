@@ -3,79 +3,273 @@ title: "Contribution Guidelines"
 linkTitle: "Contribution Guidelines"
 weight: 10
 description: >
-  How to contribute to the docs
+  How to contribute to kubecf
 ---
 
 {{% pageinfo %}}
-These basic sample guidelines assume that your Docsy site is deployed using Netlify and your files are stored in GitHub. You can use the guidelines "as is" or adapt them with your own instructions: for example, other deployment options, information about your doc project's file structure, project-specific review guidelines, versioning guidelines, or any other information your users might find useful when updating your site. [Kubeflow](https://github.com/kubeflow/website/blob/master/README.md) has a great example.
+The intended audience of this document are developers wishing to
+contribute to the Kubecf project.
 
-Don't forget to link to your own doc repo rather than our example site! Also make sure users can find these guidelines from your doc repo README: either add them there and link to them from this page, add them here and link to them from the README, or include them in both locations.
+It provides a basic overview of various aspects of the project below,
+and uses these overviews as the launching points to other documents
+which go deeper into the details of each aspect.
 {{% /pageinfo %}}
 
-We use [Hugo](https://gohugo.io/) to format and generate our website, the
-[Docsy](https://github.com/google/docsy) theme for styling and site structure, 
-and [Netlify](https://www.netlify.com/) to manage the deployment of the site. 
-Hugo is an open-source static site generator that provides us with templates, 
-content organisation in a standard directory structure, and a website generation 
-engine. You write the pages in Markdown (or HTML if you want), and Hugo wraps them up into a website.
+## Table of Contents (Aspects)
 
-All submissions, including submissions by project members, require review. We
-use GitHub pull requests for this purpose. Consult
-[GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
-information on using pull requests.
+  - [Deployment](#deployment)
+  - [Pull Requests](#pull-requests)
+  - [Source Organization](#source-organization)
+  - [Docker Images](#docker-images)
+  - [Linting](#linting)
+  - [Patching](#patching)
+  - [BOSH Development Workflow]
 
-## Quick start with Netlify
+## Deployment
 
-Here's a quick guide to updating the docs. It assumes you're familiar with the
-GitHub workflow and you're happy to use the automated preview of your doc
-updates:
+Kubecf is built on top of a number of technologies, namely Kubernetes,
+Helm (charts), and the [cf-operator] (for the translation of BOSH
+deployments into Kubernetes objects).
 
-1. Fork the [Goldydocs repo](https://github.com/google/docsy-example) on GitHub.
-1. Make your changes and send a pull request (PR).
-1. If you're not yet ready for a review, add "WIP" to the PR name to indicate 
-  it's a work in progress. (**Don't** add the Hugo property 
-  "draft = true" to the page front matter, because that prevents the 
-  auto-deployment of the content preview described in the next point.)
-1. Wait for the automated PR workflow to do some checks. When it's ready,
-  you should see a comment like this: **deploy/netlify — Deploy preview ready!**
-1. Click **Details** to the right of "Deploy preview ready" to see a preview
-  of your updates.
-1. Continue updating your doc and pushing your changes until you're happy with 
-  the content.
-1. When you're ready for a review, add a comment to the PR, and remove any
-  "WIP" markers.
+[cf-operator]: https://github.com/cloudfoundry-incubator/cf-operator
 
-## Updating a single page
+For all these we have multiple choices for installing them, and
+various interactions between the choices influence the details of the
+commands to use.
 
-If you've just spotted something you'd like to change while using the docs, Docsy has a shortcut for you:
+Instead of trying to document all the possibilities and all their
+interactions at once, supporting documents will describe specific
+combinations of choices in detail, from the bottom up.
 
-1. Click **Edit this page** in the top right hand corner of the page.
-1. If you don't already have an up to date fork of the project repo, you are prompted to get one - click **Fork this repository and propose changes** or **Update your Fork** to get an up to date version of the project to edit. The appropriate page in your fork is displayed in edit mode.
-1. Follow the rest of the [Quick start with Netlify](#quick-start-with-netlify) process above to make, preview, and propose your changes.
+|Document                          |Description                                    |
+|---                               |---                                            |
+|[Local Minikube](dev/minikube.md) |Minikube/Bazel + Operator/Bazel + Kubecf/Bazel |
+|[General Kube](dev/general.md)    |Any Kube + Operator/Helm + Kubecf/Helm         |
 
-## Previewing your changes locally
+## Pull Requests
 
-If you want to run your own local Hugo server to preview your changes as you work:
+The general work flow for pull requests contributing bug fixes,
+features, etc. is:
 
-1. Follow the instructions in [Getting started](/docs/getting-started) to install Hugo and any other tools you need. You'll need at least **Hugo version 0.45** (we recommend using the most recent available version), and it must be the **extended** version, which supports SCSS.
-1. Fork the [Goldydocs repo](https://github.com/google/docsy-example) repo into your own project, then create a local copy using `git clone`. Don’t forget to use `--recurse-submodules` or you won’t pull down some of the code you need to generate a working site.
+  - Branch or Fork the __suse/kubecf__ repository, depending on
+    permissions.
 
-    ```
-    git clone --recurse-submodules --depth 1 https://github.com/google/docsy-example.git
-    ```
+  - Implement the bug fix, feature, etc. on that branch/fork.
 
-1. Run `hugo server` in the site root directory. By default your site will be available at http://localhost:1313/. Now that you're serving your site locally, Hugo will watch for changes to the content and automatically refresh your site.
-1. Continue with the usual GitHub workflow to edit files, commit them, push the
-  changes up to your fork, and create a pull request.
+  - Submit a pull request based on the branch/fork through the github
+    web interface, against the __master__ branch.
 
-## Creating an issue
+  - Developers will review the content of the pull request, asking
+    questions, requesting changes, and generally discussing the
+    submission with the submitter and among themselves.
 
-If you've found a problem in the docs, but you're not sure how to fix it yourself, please create an issue in the [Goldydocs repo](https://github.com/google/docsy-example/issues). You can also create an issue about a specific page by clicking the **Create Issue** button in the top right hand corner of the page.
+  - After all issues with the request are resolved, and CI has passed,
+    a developer will merge it into master.
 
-## Useful resources
+  - Note that it may be necessary to rebase the branch/fork to resolve
+    any conflicts due to other PRs getting merging while the PR is
+    under discussion.
 
-* [Docsy user guide](wherever it goes): All about Docsy, including how it manages navigation, look and feel, and multi-language support.
-* [Hugo documentation](https://gohugo.io/documentation/): Comprehensive reference for Hugo.
-* [Github Hello World!](https://guides.github.com/activities/hello-world/): A basic introduction to GitHub concepts and workflow.
+    Such a rebase will be a change request from the developers to the
+    contributor, on the assumption that the contributor is best suited
+    to resolving the conflicts.
 
+## Source Organization
 
+The important directories of the kubecf sources, and their contents
+are shown in the table below. Each directory entry links to the
+associated documentation, if we have any.
+
+|Directory                                                              |Content                                                |
+|---                                                                    |---                                                    |
+|__top__                                                                |Documentation entrypoint, License,                     |
+|                                                                       |Main workspace definitions.                            |
+|__top__/.../README.md                                                  |Directory-specific local documentation.                |
+|[__top__/bosh/releases](../bosh/releases/pre_render_scripts/README.md) |Support for runtime patches of a kubecf deployment.    |
+|__top__/doc                                                            |Global documentation.                                  |
+|[__top__/dev/cf_deployment/bump](cf_deployment/bump.md)                |Tools to support updating the cf deployment            |
+|                                                                       |manifest used by kubecf.                               |
+|[__top__/dev/cf_cli](cf_cli.md)                                        |Deploy cf cli into a helper pod from which to then     |
+|                                                                       |inspect the deployed Kubecf                            |
+|[__top__/dev/kube](inspection.md)                                      |Tools to inspect kube clusters and kubecf deployments. |
+|[__top__/dev/linters](linters.md)                                      |Tools for statically checking the kubecf sources.      |
+|[__top__/dev/minikube](kube/minikube.md)                               |Targets to manage a local kubernetes cluster.          |
+|                                                                       |Minikube based.                                        |
+|[__top__/dev/kind](kube/kind.md)                                       |Targets to manage a local kubernetes cluster.          |
+|                                                                       |KinD based (Kube-in-Docker).                           |
+|[__top__/dev/kubecf](../dev/kubecf/README.md)                          |Kubecf chart configuration, and targets for            |
+|                                                                       |local chart application.                               |
+|__top__/deploy/helm/kubecf                                             |Templates and assets wrapping a CF deployment          |
+|                                                                       |manifest into a helm chart.                            |
+|__top__/rules                                                          |Supporting bazel definitions.                          |
+|[__top__/testing](tests.md)                                            |Bazel targets to run CF smoke and acceptance tests.    |
+
+## Docker Images
+
+The docker images used by kubecf to run jobs in container use a
+moderately complex naming scheme.
+
+This scheme is explained in a separate document:
+[The Naming Of Docker Images in kubecf](dev/image-naming.md).
+
+## Linting
+
+Currently, 3 linters are available:
+
+  - `dev/linters/shellcheck.sh`
+  - `dev/linters/yamllint.sh`
+  - `dev/linters/helmlint.sh`
+
+Invoke these linters as
+
+```sh
+dev/linters/shellcheck.sh
+dev/linters/yamllint.sh
+dev/linters/helmlint.sh
+```
+
+to run shellcheck on all `.sh` files found in the entire checkout, or yamllint
+on all `.yaml` or `.yml` files respectively, and report any issues found.  The
+last option runs `helm lint` (without `--strict`) on the generated helm chart.
+
+## Patching
+
+### Background
+
+The main goal of the CF operator is to take a BOSH deployment
+manifest, deploy it, and have it run as-is.
+
+Naturally, in practice, this goal is not quite reached yet, requiring
+patching of the deployment manifest in question, and/or the
+involved releases, at various points of the deployment process. The
+reason behind a patch is generally fixing a problem, whether it be
+from the translation into the kube environment, an issue with an
+underlying component, or something else.
+
+Then, there are features, given the user of the helm chart wrapped
+around the deployment manifest the ability to easily toggle various
+preset configurations, for example the use of eirini instead of diego
+as the application scheduler.
+
+### Features
+
+A feature of kubecf is usually implemented using a combination of
+[Helm templating] and [BOSH ops files].
+
+[Helm templating]: https://helm.sh/docs/chart_template_guide/
+[BOSH ops files]:  https://bosh.io/docs/cli-ops-files/
+
+The helm templating is used to translate the properties in the chart's
+values.yaml to the actual actions to take, by including/excluding
+chart elements, often the BOSH ops files containing the structured
+patches modifying the deployment itself (changing properties,
+adding/removing releases, (de)activating jobs, etc.)
+
+The helm templating is applied when the kubecf chart is deployed.
+
+The ops files are then applied by the operator, transforming the base
+manifest from the chart into the final manifest to deploy.
+
+### Customization
+
+Kubecf provides two mechanisms for customization during development
+(and maybe by operators ?):
+
+  1. The property `.Values.operations.custom` of the chart is a list
+     of names for kube configmaps containing the texts of the ops
+     files to apply beyond the ops files from the chart itself.
+
+     Note that we are talking here about a yaml structure whose
+     `data.ops` property is a __text block__ holding the yaml
+     structure of an ops file.
+
+     There is no tooling to help the writer with the ensuing quoting
+     hell.
+
+     Note further that the resulting config maps have to be applied,
+     i.e. uploaded into the kube cluster __before__ deploying the
+     kubecf helm chart with its modified values.yaml.
+
+     For example, `kubectl apply` the object below
+
+```yaml
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap_name
+data:
+  ops: |-
+    some_random_ops
+```
+
+     and then use
+
+```yaml
+operations:
+  custom:
+  - configmap_name
+```
+
+  in the values.yaml (or an equivalent `--set` option) as part of a
+  kubecf deployment to include that ops file in the deployment.
+
+  The [BOSH Development Workflow] is an example of its use.
+
+[BOSH Development Workflow]: bosh-release-development.md
+
+  2. The second mechanism allows the specification of any custom BOSH
+     property for any instancegroup and job therein.
+
+     Just specifying
+
+```yaml
+properties:
+  instance-group-name:
+    job-name:
+      some-property: some-value
+```
+
+  in the values.yaml for the kubecf chart causes the chart to
+  generate and use an ops file which applies the assignment of
+  `some-value` to `some-property` to the specified instance group
+  and job during deployment.
+
+  An example of its use in Kubecf is limiting the set of test
+  suites executed by the [CF acceptance tests](tests_cat.md).
+
+Both forms of customization assume a great deal of familiarity on the
+part of the developer and/or operator with the BOSH releases, instance
+groups and jobs underlying the CF deployment manifest, i.e. which
+properties exist, what changes to them mean and how they affect the
+system.
+
+### Patches
+
+In SCF v2, the predecessor to kubecf, the [patches] scripts enabled
+developers and maintainers to apply general patches to the sources of
+a job (i.e. configuration templates, script sources, etc.) before that
+job was rendered and then executed. At the core, the feature allows
+the user to execute custom scripts during runtime of the job container
+for a specific instance_group.
+
+[Pre render scripts] are the equivalent feature of the CF operator.
+
+[patches]: https://github.com/SUSE/scf/tree/develop/container-host-files/etc/scf/config/scripts/patches
+[Pre render scripts]: https://github.com/cloudfoundry-incubator/cf-operator/blob/master/docs/from_bosh_to_kube.md#Pre_render_scripts
+
+Kubecf makes use of this feature to fix a number of issues in the
+deployment. The relevant patch scripts are found under the directory
+`bosh/releases/pre_render_scripts`.
+
+When following the directory structure explained by the
+[README](pre-render-scripts.md), the bazel machinery for generating
+the kubecf helm chart will automatically convert these scripts into
+the proper ops files for use by the CF operator.
+
+__Attention__ All patch scripts must be idempotent. In other words, it
+must be possible to apply them multiple times without error and
+without changing the result.
+
+The existing patch scripts do this by checking if the patch is already
+applied before attempting to apply it for real.
