@@ -25,13 +25,13 @@
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://mudler.github.io/kubecf-docs/docs/reference/tests/" />
-<meta property="article:modified_time" content="2019-12-19T16:03:09+01:00" /><meta property="og:site_name" content="KubeCF" />
+<meta property="article:modified_time" content="2019-12-19T16:16:16+01:00" /><meta property="og:site_name" content="KubeCF" />
 <meta itemprop="name" content="Tests">
 <meta itemprop="description" content="Acceptance tests
 ">
 
 
-<meta itemprop="dateModified" content="2019-12-19T16:03:09&#43;01:00" />
+<meta itemprop="dateModified" content="2019-12-19T16:16:16&#43;01:00" />
 <meta itemprop="wordCount" content="76">
 
 
@@ -545,13 +545,13 @@
 <p>The bazel target <strong>//testing/acceptance_tests</strong> starts a run of the
 <a href="https://github.com/SUSE/cf-acceptance-tests-release" target="_blank">Cloud Foundry Acceptance Tests</a>.</p>
 
-<p>See also the <a href="tests.md" target="_blank">entire set of available tests</a>.</p>
+<p>See also the <a href="/docs/reference/layout/testing/">entire set of available tests</a>.</p>
 
 <h2 id="limiting-test-suites">Limiting test suites</h2>
 
 <p>To limit the test groups to run, set the BOSH property
 <a href="https://github.com/SUSE/cf-acceptance-tests-release/blob/0.0.1/jobs/acceptance-tests/spec#L47-L54" target="_blank"><code>acceptance_tests.include</code></a> as documented.  To do so, adjust the <code>properties</code>
-key in <a href="../../dev/kubecf/values.yaml"><code>values.yaml</code></a> to specify the groups desired.  For example:</p>
+key in <a href="https://github.com/SUSE/kubecf/blob/master/deploy/helm/kubecf/values.yaml" target="_blank"><code>values.yaml</code></a> to specify the groups desired.  For example:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">properties<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span>acceptance-tests<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span>acceptance-tests<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -559,11 +559,11 @@ key in <a href="../../dev/kubecf/values.yaml"><code>values.yaml</code></a> to sp
 </span><span style="color:#f8f8f8;text-decoration:underline">        </span>include<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;+docker,-ssh&#34;</span></code></pre></div>
 <p>Note that this is an example of how to use the second kind of
 customization feature noted in the main
-<a href="Contribute.md#customization" target="_blank">README</a>.</p>
+<a href="/docs/contribution-guidelines/#customization">README</a>.</p>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified December 19, 2019: <a  href="https://github.com/mudler/kubecf-docs/commit/961159ce7d2028eae8924b7170f5cefc82fb6f8d">Integrating remaining existing docs (961159c)</a>
+	<div class="text-muted mt-5 pt-3 border-top">Last modified December 19, 2019: <a  href="https://github.com/mudler/kubecf-docs/commit/4d8ebc6bf25a2a17f58e729d2a1bc05646c69031">Minor fixups (4d8ebc6)</a>
 </div>
 </div>
 
