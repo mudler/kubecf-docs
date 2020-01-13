@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-BASE_URL="${BASE_URL:-https://suse.github.io/kubecf-docs}"
+BASE_URL="${BASE_URL:-https://kubecf.suse.dev}"
 
 binpath="${ROOT_DIR}/bin"
 publicpath="${ROOT_DIR}/public"

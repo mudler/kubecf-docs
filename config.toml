@@ -1,4 +1,4 @@
-baseURL = "https://suse.github.io/kubecf-docs/"
+baseURL = "https://kubecf.suse.dev"
 title = "KubeCF"
 
 enableRobotsTXT = true
